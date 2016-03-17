@@ -11,10 +11,11 @@ lzmat_ext = Extension(
 setup(
     name='pylzmat',
     version='1.0',
-    description='lzmat bindings',
+    description='lzmat bindings.',
     author='Marcos Agüero',
     author_email='wiredrat@gmail.com',
-    url='',
+    url='https://github.com/wiredrat/pylzmat',
+    download_url='https://github.com/wiredrat/pylzmat/archive/1.0.tar.gz',
     py_modules=['pylzmat'],
     long_description='''
         Bindings for lzmat library (https://github.com/nemequ/lzmat).
