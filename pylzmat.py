@@ -13,7 +13,6 @@ def encode(data):
     out = create_string_buffer(outlen+sizeof(c_int()))
     outlen = c_int(outlen)
     ret = lib.lzmat_encode(byref(out), byref(outlen), data, len(data))
-    print str(bytearray(out)[:outlen.value]).encode('hex'), outlen
     if ret == 0:
         return out[:outlen.value]
     else:
