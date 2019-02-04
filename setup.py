@@ -24,7 +24,7 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    packages=['pylzmat'],
+    py_modules=['pylzmat'],
     setup_requires=["cffi>1.0.0"],
     cffi_modules=["pylzmat_build.py:ffibuilder"],
     install_requires=["cffi>1.0.0"],
