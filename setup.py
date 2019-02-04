@@ -1,24 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup, Extension
+from setuptools import setup
 
-liblzmat = Extension('lzmat', ['src/lzmat/lzmat_dec.c', 'src/lzmat/lzmat_enc.c'])
+VERSION = open('VERSION', 'r').read().strip()
 
 setup(
     name='pylzmat',
-    version='1.0.3',
+    version=VERSION,
     description='lzmat bindings.',
     author='Marcos Agüero',
     author_email='wiredrat@gmail.com',
     url='https://github.com/wiredrat/pylzmat',
-    download_url='https://github.com/wiredrat/pylzmat/archive/1.0.tar.gz',
-    py_modules=['pylzmat'],
     long_description='''
-        Bindings for lzmat library (https://github.com/nemequ/lzmat).
+        Bindings for lzmat library (http://www.matcode.com/lzmat.htm).
 ''',
-    ext_modules=[liblzmat],
-    license = "GNU GPLv2",
+    license="GNU GPLv2",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -26,5 +23,9 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules'
-    ]
+    ],
+    py_modules=['pylzmat'],
+    setup_requires=["cffi>1.0.0"],
+    cffi_modules=["pylzmat_build.py:ffibuilder"],
+    install_requires=["cffi>1.0.0"],
 )
