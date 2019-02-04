@@ -1,4 +1,4 @@
-from _lzmat import lib, ffi
+from _pylzmat import lib, ffi
 
 
 def encode(data):

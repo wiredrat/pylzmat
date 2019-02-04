@@ -9,7 +9,7 @@ int lzmat_encode(MP_U8 *pbOut, MP_U32 *pcbOut, MP_U8 *pbIn, MP_U32 cbIn);
 int lzmat_decode(MP_U8 *pbOut, MP_U32 *pcbOut, MP_U8 *pbIn, MP_U32 cbIn);
 """
 ffibuilder.set_source(
-    "_lzmat",  # name of the output C extension
+    "_pylzmat",  # name of the output C extension
     """#include "lzmat.h" """,
     sources=['src/lzmat/lzmat_enc.c', 'src/lzmat/lzmat_dec.c'],   # includes pi.c as additional sources
     include_dirs=['src/lzmat']
