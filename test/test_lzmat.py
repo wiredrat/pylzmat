@@ -37,16 +37,16 @@ TEST_ENC = ('L\x00orem ips\x00um dolor\x00 sit ame\x00t, conse\x00ctetur '
 class TestAnalysis(unittest.TestCase):
     def test_encode(self):
         encoded = pylzmat.encode(TEST)
-        self.assertEqual(encoded, TEST_ENC)
+        self.assertEqual(encoded, TEST_ENC.encode('latin-1'))
 
     def test_encode_bytearray(self):
-        encoded = pylzmat.encode(bytearray(TEST))
-        self.assertEqual(encoded, TEST_ENC)
+        encoded = pylzmat.encode(bytearray(TEST, 'latin-1'))
+        self.assertEqual(encoded, TEST_ENC.encode('latin-1'))
 
     def test_decode(self):
-        decoded = pylzmat.decode(TEST_ENC)
-        self.assertEqual(decoded, TEST)
+        decoded = pylzmat.decode(TEST_ENC.encode('latin-1'))
+        self.assertEqual(decoded, TEST.encode('latin-1'))
 
     def test_decode_bytearry(self):
-        decoded = pylzmat.decode(bytearray(TEST_ENC))
-        self.assertEqual(decoded, TEST)
+        decoded = pylzmat.decode(bytearray(TEST_ENC, 'latin-1'))
+        self.assertEqual(decoded, TEST.encode('latin-1'))

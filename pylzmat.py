@@ -1,10 +1,16 @@
 from _pylzmat import lib, ffi
 
 
-def encode(data):
+def encode(data, encoding='latin-1'):
     size = len(data)
     outlen = (size) + ((size + 7) >> 3) + 0x21
-    data_in = ffi.new("char[%d]" % size, str(data))
+
+    if isinstance( data, str ):
+        data = bytes( data, encoding )
+    elif isinstance( data, bytearray ):
+        data = bytes(data)
+
+    data_in = ffi.new("char[%d]" % size, data )
     data_out = ffi.new("char[%d]" % outlen)
     data_out_buff = ffi.buffer(data_out)
     data_out_len = ffi.new("MP_U32 *")
@@ -17,14 +23,19 @@ def encode(data):
         raise Exception('Return error: %d' % ret)
 
 
-def decode(data, size=None):
+def decode(data, size=None, encoding='latin-1'):
     if size:
         outlen = size
 
     else:
         outlen = len(data) * 100
 
-    data_in = ffi.new("char[%d]" % len(data), str(data))
+    if isinstance( data, str ):
+        data = bytes( data, encoding )
+    elif isinstance( data, bytearray ):
+        data = bytes(data)
+
+    data_in = ffi.new("char[%d]" % len(data), data)
     data_out = ffi.new("char[%d]" % outlen)
     data_out_buff = ffi.buffer(data_out)
     data_out_len = ffi.new("MP_U32 *")
